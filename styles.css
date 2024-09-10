@@ -1,0 +1,109 @@
+/* Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap&subset=latin");
+/* Variables */
+/* Elements */
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+  background-image: url("assets/images/background-pattern-mobile.svg");
+  background-repeat: repeat-x;
+  background-color: hsl(275, 100%, 97%);
+  font-family: "Work Sans", sans-serif;
+}
+
+main {
+  margin: 4rem 1rem;
+  padding: 1.2rem;
+  border-radius: 10px;
+  background-color: hsl(0, 0%, 100%);
+}
+
+hr {
+  color: hsl(0, 0%, 100%);
+  filter: opacity(50%);
+  margin: 0;
+}
+
+/* Header */
+.faq-header {
+  display: flex;
+  align-items: center;
+  margin: 0 0 2rem 0;
+  /* Elements */
+}
+.faq-header__icon {
+  height: 1.5rem;
+  margin-right: 1.5rem;
+}
+.faq-header__title {
+  margin: 0;
+  color: hsl(292, 42%, 14%);
+}
+
+/* FAQ-Items */
+.faq-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 0;
+  /* Elements */
+  /* Modifiers */
+}
+.faq-item__toggle {
+  display: flex;
+  text-align: left;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  background-color: hsl(0, 0%, 100%);
+  border: none;
+  cursor: pointer;
+}
+.faq-item__toggle img {
+  content: url("assets/images/icon-minus.svg");
+}
+.faq-item__toggle[aria-expanded=false] img {
+  content: url("assets/images/icon-plus.svg");
+}
+.faq-item__question {
+  margin: 0 2rem 0 0;
+  color: hsl(292, 42%, 14%);
+  font-size: 0.8rem;
+}
+.faq-item__answer {
+  font-size: 0.9rem;
+  color: hsl(292, 16%, 49%);
+}
+.faq-item--collapsed {
+  display: none;
+}
+
+/* Attribution */
+.attribution {
+  font-size: 11px;
+  text-align: center;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+}
+
+/* Queries */
+@media (min-width: 1000px) {
+  body {
+    background-image: url("assets/images/background-pattern-desktop.svg");
+  }
+  main {
+    width: 35vw;
+    margin: auto auto;
+  }
+  .faq-item__toggle:hover .faq-item__question {
+    color: hsl(281, 83%, 54%);
+  }
+}/*# sourceMappingURL=styles.css.map */
