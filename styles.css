@@ -78,6 +78,7 @@ main {
   font-size: 0.8rem;
   line-height: 1.2rem;
   padding-right: 1rem;
+  margin: 0.75rem 0.5rem;
   color: hsl(292, 16%, 49%);
 }
 
@@ -90,7 +91,6 @@ main {
 .collapsed {
   max-height: 0;
   overflow: hidden;
-  margin: 0.75rem 0.5rem;
   transition: max-height 0.5s ease;
 }
 

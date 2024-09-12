@@ -9,12 +9,16 @@ const toggleFaqState = (btn, answer, scrollHeight) => {
     if (currentlyToggledButton && currentlyToggledButton !== btn) {
         currentlyToggledButton.setAttribute('aria-expanded', false);
         currentlyVisibleAnswer.setAttribute('aria-hidden', true);
+        currentlyVisibleAnswer.classList.remove('expanded');
+        currentlyVisibleAnswer.classList.add('collapsed');
         currentlyVisibleAnswer.style.maxHeight = '0';
     }
 
     // Toggle the current FAQ item
     btn.setAttribute('aria-expanded', !isExpanded);
     answer.setAttribute('aria-hidden', isExpanded);
+    answer.classList.toggle('expanded', !isExpanded);
+    answer.classList.toggle('collapsed', isExpanded);
     answer.style.maxHeight = isExpanded ? '0' : `${scrollHeight}px`;
 
     // Update references to the current visible/toggled FAQ

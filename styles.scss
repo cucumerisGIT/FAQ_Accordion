@@ -117,6 +117,7 @@ main {
         line-height: 1.2rem;
 
         padding-right: 1rem;
+        margin: 0.75rem 0.5rem;
 
         color: map-get($colors, grayish-purple);
     }
@@ -132,7 +133,6 @@ main {
 .collapsed {
     max-height: 0;
     overflow: hidden;
-    margin: 0.75rem 0.5rem;
     transition: max-height $transition-duration ease;
 }
 
