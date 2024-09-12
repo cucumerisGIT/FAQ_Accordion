@@ -1,26 +1,36 @@
-let currentlyExpandedBtn = null;
+const faqItems = Array.from(document.querySelectorAll('.faq-item'));
 let currentlyVisibleAnswer = null;
+let currentlyToggledButton = null;
 
-document.querySelectorAll('.faq-item__toggle').forEach(toggle => {
-    toggle.addEventListener('click', (e) => {
-        const btn = e.currentTarget;
-        const answer = btn.nextElementSibling;
-        const isExpanded = btn.getAttribute("aria-expanded") === "true";
+const toggleFaqState = (btn, answer, scrollHeight) => {
+    const isExpanded = btn.getAttribute('aria-expanded') === 'true';
 
-        // Close the currently expanded answer, if any
-        if (currentlyExpandedBtn && currentlyExpandedBtn !== btn) {
-            currentlyExpandedBtn.setAttribute("aria-expanded", "false");
-            currentlyVisibleAnswer.classList.add("faq-item--collapsed");
-            currentlyVisibleAnswer.setAttribute("aria-hidden", "false");
-        }
+    // Close any previously open answer
+    if (currentlyToggledButton && currentlyToggledButton !== btn) {
+        currentlyToggledButton.setAttribute('aria-expanded', false);
+        currentlyVisibleAnswer.setAttribute('aria-hidden', true);
+        currentlyVisibleAnswer.style.maxHeight = '0';
+    }
 
-        // Toggle the current button
-        btn.setAttribute("aria-expanded", !isExpanded);
-        answer.classList.toggle("faq-item--collapsed", isExpanded);
-        answer.setAttribute("aria-hidden", isExpanded);
+    // Toggle the current FAQ item
+    btn.setAttribute('aria-expanded', !isExpanded);
+    answer.setAttribute('aria-hidden', isExpanded);
+    answer.style.maxHeight = isExpanded ? '0' : `${scrollHeight}px`;
 
-        // Assign the currently active button and answer, if any
-        currentlyExpandedBtn = !isExpanded ? btn : null;
-        currentlyVisibleAnswer = !isExpanded ? answer : null;
-    });
-  });
+    // Update references to the current visible/toggled FAQ
+    currentlyToggledButton = !isExpanded ? btn : null;
+    currentlyVisibleAnswer = !isExpanded ? answer : null;
+}
+
+faqItems.forEach(item => {
+    const btn = item.querySelector('.faq-item__toggle');
+    const answer = item.querySelector('.faq-item__answer');
+    const scrollHeight = answer.scrollHeight; // Precompute scrollHeight
+
+    // Set initial states for aria attributes
+    btn.setAttribute('aria-expanded', false);
+    answer.setAttribute('aria-hidden', true);
+
+    // Click event handler
+    btn.addEventListener('click', () => toggleFaqState(btn, answer, scrollHeight));
+});
